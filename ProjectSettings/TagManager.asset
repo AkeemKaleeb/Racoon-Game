@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - BG
   - Player
-  - 
+  - Objects
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1570840469
+    locked: 0
+  - name: Foreground
+    uniqueID: 1469022251
     locked: 0
