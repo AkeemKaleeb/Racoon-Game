@@ -4,21 +4,54 @@ using UnityEngine;
 
 public class PlayerController2D : MonoBehaviour
 {
-
-    public float speed;
-    public float jumpStrength;
-    float moveVelocity;
-    public int numJumps = 1;
-    public int numDash = 1;
-    public int dashDistance = 10;
-    public Rigidbody2D rb;
     
+    public float jumpStrength;
+    public int numJumps = 1;
+    public int numWallJumps = 1;
+    public int numDash = 1;
+    public int dashDistance = 10;    
+
+    MoveState moveState = MoveState.Idle;
+    float speed = 12;
+    float moveVelocity;
+
+    DashState dashState = DashState.Ready;
+    public float dashTimer;
+    public float maxDash = 20f;
+    public Vector2 savedVelocity;
+
+    Rigidbody2D rb;
+    [SerializeField] GroundCheck groundCheck;
+    [SerializeField] WallCheck leftCheck;
+    [SerializeField] WallCheck rightCheck;
+    CharacterAnimator charAnim;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        charAnim = GetComponent<CharacterAnimator>();
+    }
     public void Update()
     {
-        //jumping?
+        if (groundCheck.isGrounded)
+        {
+            numJumps = 1;
+        }
+
+        if (leftCheck.isWalled || rightCheck.isWalled)
+        {
+            numWallJumps = 1;
+            numJumps = 1;
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
-            //Able to Jump?
+            if (leftCheck.isWalled || rightCheck.isWalled)
+            {
+                numWallJumps -= 1;
+                rb.velocity = new Vector2(jumpStrength * Mathf.Cos(1 / 2), jumpStrength * Mathf.Sin(Mathf.Pow(2, 1 / 2) / 2));
+            }
+
             if (numJumps > 0)
             {
                 numJumps -= 1;
@@ -33,29 +66,75 @@ public class PlayerController2D : MonoBehaviour
 
         moveVelocity = 0;
 
-        //Left Right Movement
-        if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            moveVelocity = -speed;
-        }
         if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-            moveVelocity = speed;
-        }
+            moveState = MoveState.Right;
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+            moveState = MoveState.Left;
+        else
+            moveState = MoveState.Idle;
 
-        if (Input.GetButtonDown("Fire1") && numDash > 0)
+        switch (moveState)
         {
-            rb.AddForce(rb.velocity.normalized * dashDistance);
+            case MoveState.Idle:           
+                charAnim.IsMoving = false;
+                break;
+            case MoveState.Left:
+                moveVelocity = -speed;
+                charAnim.SetFacingDirection(FacingDirection.Left);
+                charAnim.IsMoving = true;
+                break;
+            case MoveState.Right:
+                moveVelocity = speed;
+                charAnim.SetFacingDirection(FacingDirection.Right);
+                charAnim.IsMoving = true;
+                break;                
         }
 
         rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
-    }
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        numJumps = 2;
+
+        switch (dashState)
+        {
+            case DashState.Ready:
+                var isDashKeyDown = Input.GetButtonDown("Fire1");
+                if (isDashKeyDown)
+                {
+                    savedVelocity = rb.velocity;
+                    rb.velocity *= new Vector2(4f, 1.5f);
+                    dashState = DashState.Dashing;
+                }
+                break;
+            case DashState.Dashing:
+                dashTimer += Time.deltaTime * 3;
+                if (dashTimer >= maxDash)
+                {
+                    dashTimer = maxDash;
+                    rb.velocity = savedVelocity;
+                    dashState = DashState.Cooldown;
+                }
+                break;
+            case DashState.Cooldown:
+                dashTimer -= Time.deltaTime;
+                if (dashTimer <= 0)
+                {
+                    dashTimer = 0;
+                    dashState = DashState.Ready;
+                }
+                break;
+        }
     }
 }
 
+public enum DashState
+{
+    Ready,
+    Dashing,
+    Cooldown
+}
 
-    
+public enum MoveState
+{
+    Left,
+    Right,
+    Idle
+}
 
