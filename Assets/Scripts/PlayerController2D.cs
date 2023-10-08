@@ -26,13 +26,21 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField] WallCheck rightCheck;
     CharacterAnimator charAnim;
 
+    SceneLoader sceneLoader;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         charAnim = GetComponent<CharacterAnimator>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
     }
     public void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            sceneLoader.Reset();
+        }
+
         if (groundCheck.isGrounded)
         {
             numJumps = 1;
