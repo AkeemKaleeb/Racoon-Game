@@ -10,9 +10,4 @@ public class GroundCheck : MonoBehaviour
     {
         isGrounded = true;
     }
-
-    private void OnTriggerExit2D()
-    {
-        isGrounded = false;
-    }
 }

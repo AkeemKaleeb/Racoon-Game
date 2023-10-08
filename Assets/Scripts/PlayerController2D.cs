@@ -7,6 +7,8 @@ public class PlayerController2D : MonoBehaviour
     public int numDash = 1;
     public int dashDistance = 10;
 
+    public bool playerCanMove = true;
+
     MoveState moveState = MoveState.Idle;
     float speed = 12;
     float moveVelocity;
@@ -25,8 +27,6 @@ public class PlayerController2D : MonoBehaviour
     }
     public void Update()
     {
-        moveVelocity = 0;
-
         if (Input.GetAxisRaw("Horizontal") > 0)
             moveState = MoveState.Right;
         else if (Input.GetAxisRaw("Horizontal") < 0)
@@ -38,6 +38,7 @@ public class PlayerController2D : MonoBehaviour
         {
             case MoveState.Idle:
                 charAnim.IsMoving = false;
+                moveVelocity = 0;
                 break;
             case MoveState.Left:
                 moveVelocity = -speed;
