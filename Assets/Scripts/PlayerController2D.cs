@@ -18,12 +18,15 @@ public class PlayerController2D : MonoBehaviour
     Dash dash;
     Jump jump;
 
+    SceneLoader sceneLoader;
+
     private void Start()
     {
         dash = GetComponent<Dash>();
         jump = GetComponent<Jump>();
         rb = GetComponent<Rigidbody2D>();
         charAnim = GetComponent<CharacterAnimator>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
     }
     public void Update()
     {
