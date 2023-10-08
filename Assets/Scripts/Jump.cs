@@ -39,6 +39,7 @@ public class Jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        numJumps = 1;
+        if (collision.otherCollider.name != "TopBlock")
+            numJumps = 1;
     }
 }
