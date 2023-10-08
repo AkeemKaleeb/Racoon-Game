@@ -12,7 +12,7 @@ public class PlayerController2D : MonoBehaviour
     public int dashDistance = 10;    
 
     MoveState moveState = MoveState.Idle;
-    float speed = 12;
+    public float speed = 12;
     float moveVelocity;
 
     DashState dashState = DashState.Ready;

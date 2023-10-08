@@ -249,6 +249,7 @@ MonoBehaviour:
   numWallJumps: 1
   numDash: 1
   dashDistance: 10
+  speed: 8
   dashTimer: 0
   maxDash: 20
   savedVelocity: {x: 0, y: 0}
