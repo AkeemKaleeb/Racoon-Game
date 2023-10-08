@@ -6,7 +6,7 @@ public class WallCheck : MonoBehaviour
 {
     public bool isWalled = false;
 
-    void OnTriggerEnter2D()
+    private void OnTriggerEnter2D()
     {
         isWalled = true;
     }
