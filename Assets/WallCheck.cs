@@ -6,12 +6,12 @@ public class WallCheck : MonoBehaviour
 {
     public bool isWalled = false;
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D()
     {
         isWalled = true;
     }
 
-    private void OnCollisionExit2D(Collision2D col)
+    private void OnTriggerExit2D()
     {
         isWalled = false;
     }

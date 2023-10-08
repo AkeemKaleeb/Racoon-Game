@@ -6,12 +6,12 @@ public class GroundCheck : MonoBehaviour
 {
     public bool isGrounded = false;
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D()
     {
         isGrounded = true;
     }
 
-    private void OnCollisionExit2D(Collision2D col)
+    private void OnTriggerExit2D()
     {
         isGrounded = false;
     }
