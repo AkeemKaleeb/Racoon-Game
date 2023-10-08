@@ -127,6 +127,8 @@ GameObject:
   - component: {fileID: 5106903569225708178}
   - component: {fileID: 6245047775011744339}
   - component: {fileID: 4499104804056692998}
+  - component: {fileID: 935039741673711248}
+  - component: {fileID: 4241720979569467672}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -244,17 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7f4c78433efd54290cda47e84ec226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpStrength: 16
-  numJumps: 1
-  numWallJumps: 1
   numDash: 1
   dashDistance: 10
-  dashTimer: 0
-  maxDash: 20
-  savedVelocity: {x: 0, y: 0}
-  groundCheck: {fileID: 6168372309671258508}
-  leftCheck: {fileID: 5653981412593787465}
-  rightCheck: {fileID: 233643751069277556}
 --- !u!114 &6245047775011744339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +304,37 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.55947834}
   serializedVersion: 2
   m_Radius: 0.2776355
+--- !u!114 &935039741673711248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3958726474283671699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67341f98209747a40a1facb693d18519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpStrength: 0
+  numJumps: 1
+  numWallJumps: 1
+  canWallJump: 1
+  groundCheck: {fileID: 6168372309671258508}
+  leftCheck: {fileID: 5653981412593787465}
+  rightCheck: {fileID: 233643751069277556}
+--- !u!114 &4241720979569467672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3958726474283671699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc1eff93ee14a345b4f5eee0a825d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4128393973856342371
 GameObject:
   m_ObjectHideFlags: 0

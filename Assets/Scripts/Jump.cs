@@ -33,7 +33,7 @@ public class Jump : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (groundCheck.isGrounded && numJumps > 0 
+            if (groundCheck.isGrounded && numJumps > 0
                 && (leftCheck.isWalled || rightCheck.isWalled))
             {
                 numJumps--;
