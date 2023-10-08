@@ -6,13 +6,8 @@ public class GroundCheck : MonoBehaviour
 {
     public bool isGrounded = false;
 
-    void OnTriggerEnter2D()
+    private void OnTriggerEnter2D()
     {
         isGrounded = true;
-    }
-
-    private void OnTriggerExit2D()
-    {
-        isGrounded = false;
     }
 }

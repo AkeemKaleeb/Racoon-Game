@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public float jumpStrength;
+    public float jumpStrength = 15;
     public int numJumps = 1;
-    public int numWallJumps = 1;
-    public bool canWallJump;
 
     Rigidbody2D rb;
-    [SerializeField] GroundCheck groundCheck;
     [SerializeField] WallCheck leftCheck;
     [SerializeField] WallCheck rightCheck;
 
@@ -20,30 +17,17 @@ public class Jump : MonoBehaviour
     }
     public void JumpUpdate()
     {
-        if (groundCheck.isGrounded)
-        {
-            numJumps = 1;
-            numWallJumps = 2;
-        }
-
         if (leftCheck.isWalled || rightCheck.isWalled)
         {
             numJumps = 1;
-        }
-
+        }        
+        
         if (Input.GetButtonDown("Jump"))
         {
-            if (groundCheck.isGrounded && numJumps > 0 
-                && (leftCheck.isWalled || rightCheck.isWalled))
+            if (numJumps > 0)
             {
                 numJumps--;
                 rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
-            }
-
-            if ((leftCheck.isWalled || rightCheck.isWalled) && canWallJump && numWallJumps > 0)
-            {
-                numWallJumps--;
-                rb.velocity = new Vector2(jumpStrength * .7f, jumpStrength * .3f);
             }
         }
 
@@ -51,5 +35,10 @@ public class Jump : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        numJumps = 1;
     }
 }
