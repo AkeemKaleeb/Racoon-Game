@@ -226,11 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damping: 0
---- !u!4 &289927435 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2809000898346009189, guid: fbb7e21fb919d184c9c3447b3c712420, type: 3}
-  m_PrefabInstance: {fileID: 2086866156}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &394483470
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +513,7 @@ Transform:
   - {fileID: 1993563532}
   - {fileID: 1486745624}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727158505
 GameObject:
@@ -557,8 +552,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 289927435}
-  m_Follow: {fileID: 289927435}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
@@ -635,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6810669748226706800, guid: 69f46bcb21f98cf48990bfc013bb3f5e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6810669748226706800, guid: 69f46bcb21f98cf48990bfc013bb3f5e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17902,6 +17897,14 @@ PrefabInstance:
     - target: {fileID: 2809000898346009191, guid: fbb7e21fb919d184c9c3447b3c712420, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860388601334295654, guid: fbb7e21fb919d184c9c3447b3c712420, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860388601334295654, guid: fbb7e21fb919d184c9c3447b3c712420, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
