@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController2D : MonoBehaviour
+public class PlayerController2D_Deprecated : MonoBehaviour
 {
     public int numDash = 1;
     public int dashDistance = 10;
@@ -30,6 +30,11 @@ public class PlayerController2D : MonoBehaviour
     }
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            sceneLoader.Reset();
+        }
+
         if (Input.GetAxisRaw("Horizontal") > 0)
             moveState = MoveState.Right;
         else if (Input.GetAxisRaw("Horizontal") < 0)
